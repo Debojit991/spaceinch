@@ -192,7 +192,7 @@ export default function ContactPage() {
                                 </motion.div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 font-sans">
-                                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                                    <input type="hidden" name="access_key" value="fdc84164-647d-4b56-b53d-39d917fee2d6" />
                                     
                                     {/* Name and Email Grid */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
