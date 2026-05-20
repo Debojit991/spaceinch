@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Footer() {
     return (
         <>
@@ -11,7 +13,9 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-center pb-12 border-b border-gray-800/60 gap-6">
                         {/* Brand Logo */}
                         <div className="flex items-center space-x-3 cursor-pointer">
-                            <img src="/assets/logo.jpeg" alt="SpaceInch Logo" className="h-10 w-auto object-contain" />
+                            <div className="bg-white inline-block p-3 rounded-lg shadow-sm">
+                                <img src="/assets/logo.jpeg" alt="SpaceInch Logo" className="h-10 w-auto object-contain" />
+                            </div>
                         </div>
                         
                         {/* Socials */}
@@ -37,7 +41,9 @@ export default function Footer() {
                             </a>
                             <a 
                                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#b88e2f] text-white flex items-center justify-center hover:-translate-y-1 hover:shadow-lg hover:shadow-[#b88e2f]/20 transition-all duration-300" 
-                                href="#"
+                                href="https://www.instagram.com/spaceinch.in?igsh=MTh1dHY4MXA2endkOQ%3D%3D&utm_source=qr"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 aria-label="Instagram"
                             >
                                 <svg aria-hidden="true" className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -70,11 +76,11 @@ export default function Footer() {
                         <div>
                             <h3 className="text-lg font-bold mb-6 text-white font-sans">Information</h3>
                             <ul className="flex flex-col gap-4 text-sm font-sans text-gray-400 font-light">
-                                <li><a className="hover:text-[#b88e2f] transition-colors" href="#">About Our Company</a></li>
-                                <li><a className="hover:text-[#b88e2f] transition-colors" href="#">View Our Service</a></li>
-                                <li><a className="hover:text-[#b88e2f] transition-colors" href="#">Careers At Company</a></li>
-                                <li><a className="hover:text-[#b88e2f] transition-colors" href="#">Read Our Blog</a></li>
-                                <li><a className="hover:text-[#b88e2f] transition-colors" href="#">Our Latest Projects</a></li>
+                                <li><Link className="hover:text-[#b88e2f] transition-colors" href="/#about">About Our Company</Link></li>
+                                <li><Link className="hover:text-[#b88e2f] transition-colors" href="/#services">View Our Service</Link></li>
+                                <li><Link className="hover:text-[#b88e2f] transition-colors" href="/contact">Careers At Company</Link></li>
+                                <li><Link className="hover:text-[#b88e2f] transition-colors" href="/#blog">Read Our Blog</Link></li>
+                                <li><Link className="hover:text-[#b88e2f] transition-colors" href="/#projects">Our Latest Projects</Link></li>
                             </ul>
                         </div>
                         
