@@ -27,7 +27,7 @@ export default function AboutUs() {
         }
 
         // Entrance number counter animation for 95%
-        if (!hasAnimated.current) {
+        if (!hasAnimated.current && counterRef.current) {
             hasAnimated.current = true;
             const counterObj = { val: 0 };
             animate(counterObj, {
@@ -44,13 +44,15 @@ export default function AboutUs() {
         }
 
         // Entrance animation for cards
-        animate([card1Ref.current, card2Ref.current], {
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: (_el: unknown, i: number) => i * 200,
-            easing: "easeOutQuad",
-            duration: 800
-        });
+        if (card1Ref.current && card2Ref.current) {
+            animate([card1Ref.current, card2Ref.current], {
+                opacity: [0, 1],
+                translateY: [20, 0],
+                delay: (_el: unknown, i: number) => i * 200,
+                easing: "easeOutQuad",
+                duration: 800
+            });
+        }
     }, []);
 
     const handleMouseEnter = (iconElement: HTMLDivElement | null) => {
@@ -165,6 +167,7 @@ export default function AboutUs() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pb-6 border-b border-gray-100">
                                     {/* Feature 1 */}
                                     <div 
+                                        ref={card1Ref}
                                         className="group cursor-pointer"
                                         onMouseEnter={() => handleMouseEnter(icon1Ref.current)}
                                         onMouseLeave={() => handleMouseLeave(icon1Ref.current)}
@@ -185,6 +188,7 @@ export default function AboutUs() {
                                     
                                     {/* Feature 2 */}
                                     <div 
+                                        ref={card2Ref}
                                         className="group cursor-pointer"
                                         onMouseEnter={() => handleMouseEnter(icon2Ref.current)}
                                         onMouseLeave={() => handleMouseLeave(icon2Ref.current)}

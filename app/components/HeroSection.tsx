@@ -33,7 +33,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-black/50 z-0"></div>
                 
                 {/* BEGIN: Navigation */}
-                <header className="relative z-10 w-full glass-nav" data-purpose="main-navigation">
+                <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm transition-all duration-300 py-4" data-purpose="main-navigation">
                     <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-5 flex items-center justify-between relative">
                         {/* Logo */}
                         <div className="flex items-center space-x-3 cursor-pointer">
@@ -42,12 +42,12 @@ export default function HeroSection() {
                         
                         {/* Nav Links (Centered) */}
                         <nav className="hidden md:flex items-center space-x-8">
-                            <a className="text-sm font-medium text-white hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="#home">Home</a>
-                            <a className="text-sm font-medium text-gray-200 hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="#about">About Us</a>
-                            <a className="text-sm font-medium text-gray-200 hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="#services">Services</a>
-                            <a className="text-sm font-medium text-gray-200 hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="#projects">Projects</a>
-                            <a className="text-sm font-medium text-gray-200 hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="#blog">Blog</a>
-                            <Link className="text-sm font-medium text-gray-200 hover:text-[#b88e2f] transition-colors border-b-2 border-transparent hover:border-[#b88e2f] pb-1 font-sans" href="/contact">Contact</Link>
+                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#home">Home</a>
+                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#about">About Us</a>
+                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#services">Services</a>
+                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#projects">Projects</a>
+                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#blog">Blog</a>
+                            <Link className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="/contact">Contact</Link>
                         </nav>
                         
                         {/* CTA / Hamburger container */}
@@ -65,7 +65,7 @@ export default function HeroSection() {
                             {/* Mobile Hamburger Button */}
                             <button 
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="md:hidden text-white hover:text-[#b88e2f] focus:outline-none transition-colors p-2"
+                                className="md:hidden text-gray-900 hover:text-[#b88e2f] focus:outline-none transition-colors p-2"
                                 aria-label="Toggle menu"
                                 suppressHydrationWarning={true}
                             >
@@ -112,7 +112,7 @@ export default function HeroSection() {
                 
                 {/* BEGIN: Main Content */}
                 <main className="relative z-10 flex-grow flex items-center" data-purpose="hero-content">
-                    <div className="w-full max-w-[1200px] mx-auto px-6 lg:px-8 pt-10 pb-24">
+                    <div className="w-full max-w-[1200px] mx-auto px-6 lg:px-8 pt-32 pb-24">
                         <ScrollReveal>
                             <div className="max-w-3xl">
                                 {/* Label */}

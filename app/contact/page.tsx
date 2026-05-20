@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
     const [mounted, setMounted] = useState(false);
@@ -12,26 +13,52 @@ export default function ContactPage() {
         subject: "General Inquiry",
         message: ""
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitted(true);
-        // Reset form after a brief delay
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                subject: "General Inquiry",
-                message: ""
+        setIsSubmitting(true);
+
+        const form = e.target as HTMLFormElement;
+        const data = new FormData(form);
+        const object = Object.fromEntries(data.entries());
+        const json = JSON.stringify(object);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: json
             });
-        }, 3000);
+
+            const result = await response.json();
+            if (result.success) {
+                setIsSubmitted(true);
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    subject: "General Inquiry",
+                    message: ""
+                });
+            } else {
+                console.error("Web3Forms submission failed:", result);
+                alert("Something went wrong. Please check your access key or try again.");
+            }
+        } catch (error) {
+            console.error("Web3Forms submit error:", error);
+            alert("Failed to submit form. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!mounted) {
@@ -145,102 +172,117 @@ export default function ContactPage() {
                     {/* Right Column: Form Card */}
                     <div className="lg:col-span-7">
                         <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 h-full relative">
+                            <h2 className="text-2xl font-bold font-sans text-gray-900 mb-6">Send us a Message</h2>
                             {isSubmitted ? (
-                                <div className="absolute inset-0 bg-white/95 rounded-2xl flex flex-col items-center justify-center p-8 z-10 text-center font-sans">
-                                    <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <motion.div 
+                                    initial={{ opacity: 0, scale: 0.9 }} 
+                                    animate={{ opacity: 1, scale: 1 }} 
+                                    className="flex flex-col items-center justify-center py-12 text-center"
+                                >
+                                    {/* Large, gold, circular checkmark SVG */}
+                                    <div className="w-20 h-20 bg-[#b88e2f]/10 text-[#b88e2f] rounded-full flex items-center justify-center mb-4 shadow-sm shadow-[#b88e2f]/20">
+                                        <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Thank You!</h3>
-                                    <p className="text-gray-500 mt-2 max-w-sm">
-                                        Your message has been successfully sent. Our interior consulting team will connect with you shortly.
+                                    <h3 className="text-2xl font-bold text-gray-900 mt-4 font-sans">Message Sent Successfully!</h3>
+                                    <p className="text-gray-500 mt-2 max-w-sm font-sans text-sm">
+                                        Thank you for reaching out. Our design team will get back to you shortly.
                                     </p>
-                                </div>
-                            ) : null}
+                                </motion.div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="flex flex-col gap-6 font-sans">
+                                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                                    
+                                    {/* Name and Email Grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Your Name</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                placeholder="Enter your name"
+                                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address</label>
+                                            <input
+                                                type="email"
+                                                required
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                placeholder="Enter your email"
+                                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
+                                            />
+                                        </div>
+                                    </div>
 
-                            <h2 className="text-2xl font-bold font-sans text-gray-900 mb-6">Send us a Message</h2>
-                            <form onSubmit={handleSubmit} className="flex flex-col gap-6 font-sans">
-                                {/* Name and Email Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Phone and Subject Grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Phone Number</label>
+                                            <input
+                                                type="tel"
+                                                required
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                placeholder="Enter phone number"
+                                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subject</label>
+                                            <select
+                                                name="subject"
+                                                value={formData.subject}
+                                                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800 bg-white"
+                                            >
+                                                <option value="General Inquiry">General Inquiry</option>
+                                                <option value="Residential Design">Residential Design</option>
+                                                <option value="Commercial Design">Commercial Design</option>
+                                                <option value="Hospitality Design">Hospitality Design</option>
+                                                <option value="Consultation">Consultation Request</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {/* Message */}
                                     <div>
-                                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Your Name</label>
-                                        <input
-                                            type="text"
+                                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Your Message</label>
+                                        <textarea
                                             required
-                                            value={formData.name}
-                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            placeholder="Enter your name"
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
-                                        />
+                                            rows={5}
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                            placeholder="Tell us about your project requirements..."
+                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800 resize-none"
+                                        ></textarea>
                                     </div>
-                                    <div>
-                                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address</label>
-                                        <input
-                                            type="email"
-                                            required
-                                            value={formData.email}
-                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            placeholder="Enter your email"
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
-                                        />
-                                    </div>
-                                </div>
 
-                                {/* Phone and Subject Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Phone Number</label>
-                                        <input
-                                            type="tel"
-                                            required
-                                            value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            placeholder="Enter phone number"
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subject</label>
-                                        <select
-                                            value={formData.subject}
-                                            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800 bg-white"
-                                        >
-                                            <option value="General Inquiry">General Inquiry</option>
-                                            <option value="Residential Design">Residential Design</option>
-                                            <option value="Commercial Design">Commercial Design</option>
-                                            <option value="Hospitality Design">Hospitality Design</option>
-                                            <option value="Consultation">Consultation Request</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {/* Message */}
-                                <div>
-                                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Your Message</label>
-                                    <textarea
-                                        required
-                                        rows={5}
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        placeholder="Tell us about your project requirements..."
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] outline-none transition-all text-sm text-gray-800 resize-none"
-                                    ></textarea>
-                                </div>
-
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="w-full bg-[#b88e2f] hover:bg-[#a37e29] text-white rounded-lg py-4 font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-lg shadow-[#b88e2f]/20 hover:-translate-y-0.5"
-                                    suppressHydrationWarning={true}
-                                >
-                                    <span>Send Message</span>
-                                    <svg className="w-4 h-4 transform rotate-45" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                                    {/* Submit Button */}
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className={`w-full bg-[#b88e2f] hover:bg-[#a37e29] text-white rounded-lg py-4 font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-lg shadow-[#b88e2f]/20 hover:-translate-y-0.5 ${isSubmitting ? "animate-pulse opacity-75 cursor-not-allowed" : ""}`}
+                                        suppressHydrationWarning={true}
+                                    >
+                                        <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                                        {!isSubmitting && (
+                                            <svg className="w-4 h-4 transform rotate-45" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path>
+                                            </svg>
+                                        )}
+                                    </button>
+                                </form>
+                            )}
                         </div>
                     </div>
                 </div>

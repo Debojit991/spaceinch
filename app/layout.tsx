@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import BackToTop from "./components/BackToTop";
+import FloatingContact from "./components/FloatingContact";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className={`${plusJakartaSans.variable} ${playfairDisplay.variable} font-sans`}>
         {children}
         <BackToTop />
+        <FloatingContact />
       </body>
     </html>
   );
