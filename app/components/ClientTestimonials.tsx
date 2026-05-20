@@ -64,8 +64,8 @@ export default function ClientTestimonials() {
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5rLQsYAkAFa9fKia1Ppydr59SasRs1IR8IxB-5DlStswxxU_JWPPxe5IjbRsuu11GZ5Gx9ng1xlf-TVL7oQZ6rHSl6dtE8rARdTxFQ2yHINLqwMLZUOXX06_0mrhzXCrFfrOmVYhO8Upr8CcnZcw8aT7F4Hf75U7NtQae6TlGcmNaDyvZvwl4QIPumarAOo4VnPbo_gg8cMdRbZ4NwZgepDJJmvVlUZtNrv3UQqhPXJZf6v76Sgo5m9FoQDnU99vHRN7U_yEVfLM" 
                                     />
                                     <div>
-                                        <div className="text-base font-bold text-gray-900 font-sans">Eleanor Vance</div>
-                                        <div className="text-sm text-gray-400 font-sans">Co Founder, Vance &amp; Co</div>
+                                        <div className="text-base font-bold text-gray-900 font-sans">Rajeev Kumar</div>
+                                        <div className="text-sm text-gray-400 font-sans">CEO, Co-Founder of a leading Indian tech firm</div>
                                     </div>
                                 </div>
                                 

@@ -215,14 +215,14 @@ export default function AboutUs() {
                                         Read More &rarr;
                                     </button>
                                     
-                                    <div className="flex items-center gap-4 font-sans border-t sm:border-t-0 sm:border-l border-gray-200 pt-6 sm:pt-0 sm:pl-8">
+                                                                    <div className="flex items-center gap-4 font-sans border-t sm:border-t-0 sm:border-l border-gray-200 pt-6 sm:pt-0 sm:pl-8">
                                         <img 
-                                            alt="Leslie Alexander" 
+                                            alt="Shubham Sinha" 
                                             className="w-14 h-14 rounded-full object-cover" 
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVpBFoAEaczCbc2kJjLor1uOpKIByGbAvp2R4LZ4J93CI_t96FhzWr1QRMf8yKMCsRiYjrm7tsflPzKC6c0KRfiFG_bzwuq06HGuQVUkjtADv5IrLLJbeXEPNOHHV5OhYM0EANcjPfHnT7wSfYm1jMo1z5GPgJlb7YBFl4YpkJckg1p-2sowbkpFrgxZ_ImRki7gKPEeE8v4qKkv3k0JaGL5tXR3LxK0dpU8p5Tvcn4VTlOAvgpN-nGh6D5Vdwla56XBuFwAYw_jw" 
+                                            src="/assets/shubham-sinha.png" 
                                         />
                                         <div>
-                                            <p className="text-lg font-bold text-gray-900 leading-tight">Leslie Alexander</p>
+                                            <p className="text-lg font-bold text-gray-900 leading-tight">Shubham Sinha</p>
                                             <p className="text-sm text-gray-500">Co Founder</p>
                                         </div>
                                     </div>
