@@ -140,6 +140,66 @@ const projects: Project[] = [
         budget: "$290,000",
         category: "Commercial",
         tags: ["Geometric", "LED Mapping", "Modern"]
+    },
+    {
+        id: 9,
+        title: "The Azure Oceanfront Villa",
+        category: "Residential",
+        status: "completed",
+        rating: 4.9,
+        client: "Ananya Desai",
+        clientInitials: "AD",
+        description: "A breathtaking coastal home featuring floor-to-ceiling glass, natural stone textures, and a seamless indoor-outdoor flow.",
+        location: "Mumbai, MH",
+        area: "6,200 sq ft",
+        budget: "₹8.5 Cr",
+        tags: ["Coastal", "Luxury", "Smart Home"],
+        image: "/assets/service-1.jpg"
+    },
+    {
+        id: 10,
+        title: "Nexus Innovation Center",
+        category: "Commercial",
+        status: "ongoing",
+        rating: 4.8,
+        client: "TechFlow Inc.",
+        clientInitials: "TF",
+        description: "An ultra-modern corporate workspace designed to foster collaboration, featuring biophilic elements and acoustic zoning.",
+        location: "Bangalore, KA",
+        area: "15,000 sq ft",
+        budget: "₹12.2 Cr",
+        tags: ["Corporate", "Biophilic", "Acoustics"],
+        image: "/assets/service-2.jpg"
+    },
+    {
+        id: 11,
+        title: "The Crimson Boutique Hotel",
+        category: "Hospitality",
+        status: "completed",
+        rating: 5.0,
+        client: "Crimson Group",
+        clientInitials: "CG",
+        description: "A heritage property transformed into a luxury boutique hotel, blending traditional Indian motifs with contemporary minimalist comfort.",
+        location: "Jaipur, RJ",
+        area: "22,000 sq ft",
+        budget: "₹25 Cr",
+        tags: ["Heritage", "Boutique", "Luxury"],
+        image: "/assets/service-3 (2).jpg"
+    },
+    {
+        id: 12,
+        title: "Urban Zen Penthouse",
+        category: "Residential",
+        status: "ongoing",
+        rating: 4.7,
+        client: "Vikram Malhotra",
+        clientInitials: "VM",
+        description: "A high-altitude urban retreat prioritizing calm, featuring Japanese-inspired wabi-sabi aesthetics and muted earthy tones.",
+        location: "Kolkata, WB",
+        area: "4,100 sq ft",
+        budget: "₹6.0 Cr",
+        tags: ["Zen", "Minimalist", "Penthouse"],
+        image: "/assets/hero-bg.jpg"
     }
 ];
 

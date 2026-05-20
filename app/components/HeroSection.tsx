@@ -7,6 +7,7 @@ import ScrollReveal from "./ScrollReveal";
 export default function HeroSection() {
     const [activeSlide, setActiveSlide] = useState(0);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("home");
 
     const heroImages = [
         "/assets/hero-bg.jpg",
@@ -18,6 +19,30 @@ export default function HeroSection() {
             setActiveSlide((prev) => (prev + 1) % heroImages.length);
         }, 5000);
         return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const handleObserver = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handleObserver, {
+            root: null,
+            rootMargin: "-40% 0px -40% 0px", // Triggers when section is near the middle of the screen
+            threshold: 0,
+        });
+
+        const sections = ['home', 'about', 'services', 'projects', 'blog'];
+        sections.forEach((section) => {
+            const element = document.getElementById(section);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
     }, []);
 
     return (
@@ -42,11 +67,11 @@ export default function HeroSection() {
                         
                         {/* Nav Links (Centered) */}
                         <nav className="hidden md:flex items-center space-x-8">
-                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#home">Home</a>
-                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#about">About Us</a>
-                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#services">Services</a>
-                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#projects">Projects</a>
-                            <a className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="#blog">Blog</a>
+                            <a className={`font-medium transition-all duration-300 ${activeSection === 'home' ? 'text-[#b88e2f] drop-shadow-[0_0_8px_rgba(184,142,47,0.6)]' : 'text-gray-900 hover:text-[#b88e2f]'}`} href="#home">Home</a>
+                            <a className={`font-medium transition-all duration-300 ${activeSection === 'about' ? 'text-[#b88e2f] drop-shadow-[0_0_8px_rgba(184,142,47,0.6)]' : 'text-gray-900 hover:text-[#b88e2f]'}`} href="#about">About Us</a>
+                            <a className={`font-medium transition-all duration-300 ${activeSection === 'services' ? 'text-[#b88e2f] drop-shadow-[0_0_8px_rgba(184,142,47,0.6)]' : 'text-gray-900 hover:text-[#b88e2f]'}`} href="#services">Services</a>
+                            <a className={`font-medium transition-all duration-300 ${activeSection === 'projects' ? 'text-[#b88e2f] drop-shadow-[0_0_8px_rgba(184,142,47,0.6)]' : 'text-gray-900 hover:text-[#b88e2f]'}`} href="#projects">Projects</a>
+                            <a className={`font-medium transition-all duration-300 ${activeSection === 'blog' ? 'text-[#b88e2f] drop-shadow-[0_0_8px_rgba(184,142,47,0.6)]' : 'text-gray-900 hover:text-[#b88e2f]'}`} href="#blog">Blog</a>
                             <Link className="text-gray-900 font-medium hover:text-[#b88e2f] transition-colors" href="/contact">Contact</Link>
                         </nav>
                         
