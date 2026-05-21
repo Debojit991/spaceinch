@@ -125,8 +125,8 @@ export default function AboutUs() {
                                     className="w-32 h-32 mx-auto -mt-16 relative z-10 bg-[#b88e2f] rounded-full flex flex-col items-center justify-center text-white border-4 border-white shadow-2xl p-6 lg:absolute lg:w-40 lg:h-40 lg:mt-0 lg:bottom-12 lg:-left-12" 
                                     data-purpose="experience-badge"
                                 >
-                                    <span className="text-3xl font-extrabold font-sans">15+</span>
-                                    <span className="text-[10px] tracking-widest uppercase font-semibold text-center mt-1 font-sans">Years Of Experience</span>
+                                    <span className="text-3xl font-extrabold font-sans">4+</span>
+                                    <span className="text-[10px] tracking-widest uppercase font-semibold text-center mt-1 font-sans">Years</span>
                                 </div>
 
                                 {/* Vertical Feedback Badge */}
@@ -214,18 +214,6 @@ export default function AboutUs() {
                                     <button suppressHydrationWarning={true} className="bg-[#b88e2f] text-white px-8 py-3.5 font-medium hover:bg-[#a37e29] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex items-center gap-2 font-sans w-fit">
                                         Read More &rarr;
                                     </button>
-                                    
-                                                                    <div className="flex items-center gap-4 font-sans border-t sm:border-t-0 sm:border-l border-gray-200 pt-6 sm:pt-0 sm:pl-8">
-                                        <img 
-                                            alt="Shubham Sinha" 
-                                            className="w-14 h-14 rounded-full object-cover" 
-                                            src="/assets/shubham-sinha.png" 
-                                        />
-                                        <div>
-                                            <p className="text-lg font-bold text-gray-900 leading-tight">Shubham Sinha</p>
-                                            <p className="text-sm text-gray-500">Co Founder</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             {/* END: Right Column (Typography & Content) */}
