@@ -133,7 +133,20 @@ export default function ContactPage() {
                                     </div>
                                 </div>
 
-
+                                {/* Call Us */}
+                                <div className="flex items-start">
+                                    <div className="w-12 h-12 rounded-full bg-[#b88e2f] text-white flex items-center justify-center shrink-0 mr-4 shadow-sm shadow-[#b88e2f]/20">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.802-5.122-4.1-6.924-6.924l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                        </svg>
+                                    </div>
+                                    <div className="font-sans">
+                                        <h4 className="font-bold text-gray-900 text-sm">Call Us</h4>
+                                        <p className="text-gray-500 text-sm mt-1 leading-relaxed">
+                                            <a href="https://wa.me/917980182986" target="_blank" className="hover:text-[#b88e2f] transition-colors">+91 7980182986 (Call / WhatsApp)</a>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

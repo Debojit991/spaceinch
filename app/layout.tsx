@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <head>
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
