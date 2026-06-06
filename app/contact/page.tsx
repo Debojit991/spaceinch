@@ -127,8 +127,7 @@ export default function ContactPage() {
                                     <div className="font-sans">
                                         <h4 className="font-bold text-gray-900 text-sm">Email Us</h4>
                                         <p className="text-gray-500 text-sm mt-1 leading-relaxed">
-                                            hello@spaceinch.com<br />
-                                            projects@spaceinch.com
+                                            hello@spaceinch.com
                                         </p>
                                     </div>
                                 </div>
@@ -287,20 +286,16 @@ export default function ContactPage() {
                 </div>
 
                 {/* Business Hours Row */}
-                <div className="bg-white rounded-2xl shadow-sm p-8 max-w-4xl mx-auto mt-8 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-8 max-w-2xl mx-auto mt-8 border border-gray-100">
                     <h3 className="text-center font-sans font-bold text-gray-900 text-lg mb-6">Business Operations Hours</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center font-sans">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center font-sans">
                         <div className="border-r border-gray-100 last:border-0 py-2">
                             <span className="block text-xs font-bold text-[#b88e2f] uppercase tracking-wider mb-1">Monday - Friday</span>
-                            <span className="text-gray-900 text-sm font-medium">9:00 AM - 6:00 PM</span>
-                        </div>
-                        <div className="border-r border-gray-100 last:border-0 py-2">
-                            <span className="block text-xs font-bold text-[#b88e2f] uppercase tracking-wider mb-1">Saturday</span>
-                            <span className="text-gray-900 text-sm font-medium">10:00 AM - 4:00 PM</span>
+                            <span className="text-gray-900 text-sm font-medium">10:00 AM - 7:00 PM</span>
                         </div>
                         <div className="py-2">
-                            <span className="block text-xs font-bold text-[#b88e2f] uppercase tracking-wider mb-1">Sunday</span>
-                            <span className="text-gray-500 text-sm">Emergency by Appointment</span>
+                            <span className="block text-xs font-bold text-[#b88e2f] uppercase tracking-wider mb-1">Saturday - Sunday</span>
+                            <span className="text-gray-900 text-sm font-medium">10:00 AM - 8:00 PM</span>
                         </div>
                     </div>
                 </div>

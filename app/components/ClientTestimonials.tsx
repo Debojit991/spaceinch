@@ -1,8 +1,75 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
+const testimonials = [
+    {
+        id: "rev-1",
+        name: "R.Kumar",
+        role: "CEO, Co-Founder of a leading Indian tech firm",
+        rating: 5,
+        text: "The level of sophistication and attention to detail provided by Aurelian is unmatched. They transformed our space into a cohesive narrative of luxury and comfort. The entire process was seamless, professional, and deeply inspiring.",
+        avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuB5rLQsYAkAFa9fKia1Ppydr59SasRs1IR8IxB-5DlStswxxU_JWPPxe5IjbRsuu11GZ5Gx9ng1xlf-TVL7oQZ6rHSl6dtE8rARdTxFQ2yHINLqwMLZUOXX06_0mrhzXCrFfrOmVYhO8Upr8CcnZcw8aT7F4Hf75U7NtQae6TlGcmNaDyvZvwl4QIPumarAOo4VnPbo_gg8cMdRbZ4NwZgepDJJmvVlUZtNrv3UQqhPXJZf6v76Sgo5m9FoQDnU99vHRN7U_yEVfLM",
+        initials: "RK"
+    },
+    {
+        id: "rev-2",
+        name: "Ananya & Rohan S.",
+        role: "Homeowners, Bangalore",
+        rating: 5,
+        text: "SpaceInch truly understood our vision and turned it into a space that's not just beautiful, but also incredibly functional. Their attention to detail, timely execution and design excellence made the entire experience seamless and stress-free.",
+        avatar: null,
+        initials: "AR"
+    }
+];
+
 export default function ClientTestimonials() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
+
+    // Auto-cycling testimonials
+    useEffect(() => {
+        const timer = setInterval(() => {
+            handleNext();
+        }, 8000); // 8 seconds per slide
+
+        return () => clearInterval(timer);
+    }, [currentIndex]);
+
+    const handlePrev = () => {
+        setDirection(-1);
+        setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    };
+
+    const handleNext = () => {
+        setDirection(1);
+        setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    };
+
+    const handleDotClick = (index: number) => {
+        setDirection(index > currentIndex ? 1 : -1);
+        setCurrentIndex(index);
+    };
+
+    const slideVariants = {
+        enter: (dir: number) => ({
+            x: dir > 0 ? 50 : -50,
+            opacity: 0
+        }),
+        center: {
+            x: 0,
+            opacity: 1
+        },
+        exit: (dir: number) => ({
+            x: dir < 0 ? 50 : -50,
+            opacity: 0
+        })
+    };
+
+    const currentTestimonial = testimonials[currentIndex];
+
     return (
         <>
             {/* BEGIN: ClientTestimonials Section */}
@@ -29,7 +96,7 @@ export default function ClientTestimonials() {
                             </svg>
                             
                             {/* Content (z-10 relative) */}
-                            <div className="relative z-10 max-w-lg mx-auto lg:mx-0 w-full">
+                            <div className="relative z-10 max-w-lg mx-auto lg:mx-0 w-full flex flex-col">
                                 {/* Subtitle / Header */}
                                 <div className="flex items-center gap-4 mb-4">
                                     <div className="w-8 h-px bg-[#b88e2f]"></div>
@@ -41,36 +108,84 @@ export default function ClientTestimonials() {
                                     <span className="italic font-serif text-[#b88e2f]">people &amp; companies.</span>
                                 </h2>
                                 
-                                {/* Review Block */}
-                                <div className="mb-8">
-                                    <div className="flex flex-row gap-1.5 mb-6">
-                                        {/* 5 Gold Star SVGs */}
-                                        {[...Array(5)].map((_, i) => (
-                                            <svg key={i} className="w-5 h-5 text-[#b88e2f] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
-                                            </svg>
+                                {/* Testimonial Carousel Area */}
+                                <div className="relative overflow-hidden min-h-[280px] md:min-h-[220px] flex flex-col justify-between">
+                                    <AnimatePresence mode="wait" initial={false} custom={direction}>
+                                        <motion.div
+                                            key={currentTestimonial.id}
+                                            custom={direction}
+                                            variants={slideVariants}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                            transition={{
+                                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                                opacity: { duration: 0.2 }
+                                            }}
+                                            className="w-full"
+                                        >
+                                            {/* Review Stars & Text */}
+                                            <div className="mb-8">
+                                                <div className="flex flex-row gap-1.5 mb-6">
+                                                    {[...Array(currentTestimonial.rating)].map((_, i) => (
+                                                        <svg key={i} className="w-5 h-5 text-[#b88e2f] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                                        </svg>
+                                                    ))}
+                                                </div>
+                                                <p className="text-lg text-gray-600 leading-relaxed font-sans font-light italic">
+                                                    "{currentTestimonial.text}"
+                                                </p>
+                                            </div>
+                                            
+                                            {/* User Profile */}
+                                            <div className="flex flex-col gap-1 mt-8 pt-8 border-t border-gray-200/60">
+                                                <div className="text-base font-bold text-gray-900 font-sans">{currentTestimonial.name}</div>
+                                                <div className="text-sm text-gray-400 font-sans">{currentTestimonial.role}</div>
+                                            </div>
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Slider Controls */}
+                                <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200/60">
+                                    {/* Navigation dots */}
+                                    <div className="flex gap-2">
+                                        {testimonials.map((_, index) => (
+                                            <button
+                                                key={index}
+                                                onClick={() => handleDotClick(index)}
+                                                className={`h-2 rounded-full transition-all duration-300 ${
+                                                    index === currentIndex 
+                                                        ? "w-6 bg-[#b88e2f]" 
+                                                        : "w-2 bg-gray-300 hover:bg-[#b88e2f]/50"
+                                                }`}
+                                                aria-label={`Go to testimonial ${index + 1}`}
+                                            />
                                         ))}
                                     </div>
-                                    <p className="text-lg text-gray-600 leading-relaxed font-sans font-light italic">
-                                        "The level of sophistication and attention to detail provided by Aurelian is unmatched. They transformed our space into a cohesive narrative of luxury and comfort. The entire process was seamless, professional, and deeply inspiring."
-                                    </p>
-                                </div>
-                                
-                                {/* User Profile */}
-                                <div className="flex items-center gap-4 mt-8 pt-8 border-t border-gray-200/60">
-                                    <img 
-                                        alt="Avatar" 
-                                        className="w-[60px] h-[60px] rounded-full object-cover shadow-sm" 
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5rLQsYAkAFa9fKia1Ppydr59SasRs1IR8IxB-5DlStswxxU_JWPPxe5IjbRsuu11GZ5Gx9ng1xlf-TVL7oQZ6rHSl6dtE8rARdTxFQ2yHINLqwMLZUOXX06_0mrhzXCrFfrOmVYhO8Upr8CcnZcw8aT7F4Hf75U7NtQae6TlGcmNaDyvZvwl4QIPumarAOo4VnPbo_gg8cMdRbZ4NwZgepDJJmvVlUZtNrv3UQqhPXJZf6v76Sgo5m9FoQDnU99vHRN7U_yEVfLM" 
-                                    />
-                                    <div>
-                                        <div className="text-base font-bold text-gray-900 font-sans">Rajeev Kumar</div>
-                                        <div className="text-sm text-gray-400 font-sans">CEO, Co-Founder of a leading Indian tech firm</div>
+
+                                    {/* Navigation arrows */}
+                                    <div className="flex gap-3">
+                                        <button
+                                            onClick={handlePrev}
+                                            className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#b88e2f] hover:border-[#b88e2f] transition-all duration-300 focus:outline-none cursor-pointer"
+                                            aria-label="Previous testimonial"
+                                        >
+                                            <span className="material-symbols-outlined text-lg leading-none">chevron_left</span>
+                                        </button>
+                                        <button
+                                            onClick={handleNext}
+                                            className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#b88e2f] hover:border-[#b88e2f] transition-all duration-300 focus:outline-none cursor-pointer"
+                                            aria-label="Next testimonial"
+                                        >
+                                            <span className="material-symbols-outlined text-lg leading-none">chevron_right</span>
+                                        </button>
                                     </div>
                                 </div>
                                 
                                 {/* Aggregate Rating */}
-                                <div className="flex items-baseline gap-4 mt-12 pt-6 border-t border-gray-200/60 w-fit">
+                                <div className="flex items-baseline gap-4 mt-8 pt-6 border-t border-gray-200/60 w-fit">
                                     <div className="text-4xl font-bold text-gray-900 leading-none tracking-tight font-sans">4.82</div>
                                     <div className="flex flex-col">
                                         <div className="flex gap-0.5">

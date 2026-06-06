@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import BackToTop from "./components/BackToTop";
 import FloatingContact from "./components/FloatingContact";
+import QuotePopup from "./components/QuotePopup";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
         {children}
         <BackToTop />
         <FloatingContact />
+        <QuotePopup />
       </body>
     </html>
   );
