@@ -2,6 +2,90 @@
 
 import ScrollReveal from "./ScrollReveal";
 
+const steps = [
+    {
+        num: "01",
+        title: "Consultation",
+        desc: "Understanding your space, lifestyle needs, style preferences, and budget to form a solid foundational brief.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+        )
+    },
+    {
+        num: "02",
+        title: "Concept & Design",
+        desc: "Translating ideas into comprehensive layout plans, mood boards, and initial 2D/3D visual concepts.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.24 3h4.76v4.76M4 20L20 4M4 8.76V4h4.76M19.24 20h-4.76M4 15.24V20h4.76" />
+            </svg>
+        )
+    },
+    {
+        num: "03",
+        title: "Design Finalization",
+        desc: "Refining the aesthetic based on your feedback with final 3D renders, precise material selection, and lighting specs.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+            </svg>
+        )
+    },
+    {
+        num: "04",
+        title: "Estimation & Planning",
+        desc: "Providing a highly detailed cost breakdown, exact material lists, and a strict project execution timeline.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+        )
+    },
+    {
+        num: "05",
+        title: "Manufacturing & Procurement",
+        desc: "Crafting custom bespoke furniture and procuring premium fixtures with rigorous quality checks at every stage.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+        )
+    },
+    {
+        num: "06",
+        title: "Execution & Installation",
+        desc: "Flawless on-site execution by our skilled in-house team, ensuring regular updates and structural integrity.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+        )
+    },
+    {
+        num: "07",
+        title: "Styling & Finishing",
+        desc: "Curating the final layer of décor, luxury textiles, and lighting to perfect the atmospheric look and feel.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 113.536 0V21h-3.536v-3.457z" />
+            </svg>
+        )
+    },
+    {
+        num: "08",
+        title: "Handover & Aftercare",
+        desc: "A comprehensive final walkthrough and complete handover, fully backed by our dedicated aftercare support.",
+        icon: (
+            <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m-2 4a5 5 0 110-10 5 5 0 010 10zM8 21l9-9M12 17l1.5 1.5M10.5 15.5l1.5 1.5" />
+            </svg>
+        )
+    }
+];
+
 export default function HowWeWork() {
     return (
         <>
@@ -25,96 +109,60 @@ export default function HowWeWork() {
                         </div>
                         
                         {/* Process Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
-                            {/* Item 01 */}
-                            <div className="flex flex-col group transition-all duration-300">
-                                {/* Consultation SVG Icon */}
-                                <div className="text-[#b88e2f] mb-6 transform group-hover:scale-110 group-active:scale-110 transition-transform duration-300">
-                                    <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 10.742h.008v.008h-.008v-.008zm.37 0h.008v.008H9.05v-.008zm.37 0h.008v.008h-.008v-.008zm.37 0h.008v.008h-.008v-.008zm1.884 1.158c0 1.258-1.25 2.278-2.791 2.278-.293 0-.573-.036-.838-.105l-1.37.822v-1.644c-.352-.35-.583-.822-.583-1.35 0-1.258 1.25-2.279 2.792-2.279s2.79 1.02 2.79 2.278zm9.584.81c0 1.936-1.923 3.504-4.295 3.504-.452 0-.882-.057-1.29-.162l-2.106 1.265v-2.528c-.543-.538-.897-1.265-.897-2.079 0-1.935 1.922-3.504 4.293-3.504 2.373 0 4.295 1.57 4.295 3.504z" />
-                                    </svg>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {steps.map((step) => (
+                                <div key={step.num} className="flex flex-col group transition-all duration-300">
+                                    {/* SVG Icon */}
+                                    <div className="text-[#b88e2f] mb-6 transform group-hover:scale-110 group-active:scale-110 transition-transform duration-300">
+                                        {step.icon}
+                                    </div>
+                                    <span className="font-sans text-xs font-bold text-[#b88e2f] mb-2 uppercase tracking-widest">{step.num}.</span>
+                                    <h3 className="text-lg font-bold text-white mb-3 font-sans">{step.title}</h3>
+                                    <p className="text-sm text-gray-400 font-sans leading-relaxed font-light">
+                                        {step.desc}
+                                    </p>
                                 </div>
-                                <span className="font-sans text-xs font-bold text-[#b88e2f] mb-2 uppercase tracking-widest">01.</span>
-                                <h3 className="text-lg font-bold text-white mb-3 font-sans">Initial Consultation</h3>
-                                <p className="text-sm text-gray-400 font-sans leading-relaxed font-light">
-                                    We begin by understanding your vision, lifestyle, and the structural possibilities of your space to form a foundational brief.
-                                </p>
-                            </div>
-                            
-                            {/* Item 02 */}
-                            <div className="flex flex-col group md:mt-8 transition-all duration-300">
-                                {/* Drafting SVG Icon */}
-                                <div className="text-[#b88e2f] mb-6 transform group-hover:scale-110 group-active:scale-110 transition-transform duration-300">
-                                    <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                                    </svg>
-                                </div>
-                                <span className="font-sans text-xs font-bold text-[#b88e2f] mb-2 uppercase tracking-widest">02.</span>
-                                <h3 className="text-lg font-bold text-white mb-3 font-sans">Design Development</h3>
-                                <p className="text-sm text-gray-400 font-sans leading-relaxed font-light">
-                                    Translating the brief into tangible concepts, producing detailed spatial layouts, mood boards, and material palettes.
-                                </p>
-                            </div>
-                            
-                            {/* Item 03 */}
-                            <div className="flex flex-col group md:mt-16 transition-all duration-300">
-                                {/* Execution SVG Icon */}
-                                <div className="text-[#b88e2f] mb-6 transform group-hover:scale-110 group-active:scale-110 transition-transform duration-300">
-                                    <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
-                                <span className="font-sans text-xs font-bold text-[#b88e2f] mb-2 uppercase tracking-widest">03.</span>
-                                <h3 className="text-lg font-bold text-white mb-3 font-sans">Execution &amp; Management</h3>
-                                <p className="text-sm text-gray-400 font-sans leading-relaxed font-light">
-                                    Overseeing construction and installation with rigorous attention to detail, coordinating with elite craftsmen.
-                                </p>
-                            </div>
-                            
-                            {/* Item 04 */}
-                            <div className="flex flex-col group md:mt-24 transition-all duration-300">
-                                {/* Key SVG Icon */}
-                                <div className="text-[#b88e2f] mb-6 transform group-hover:scale-110 group-active:scale-110 transition-transform duration-300">
-                                    <svg className="w-12 h-12 stroke-current" fill="none" strokeWidth="1.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m-2 4a5 5 0 110-10 5 5 0 010 10zM8 21l9-9M12 17l1.5 1.5M10.5 15.5l1.5 1.5" />
-                                    </svg>
-                                </div>
-                                <span className="font-sans text-xs font-bold text-[#b88e2f] mb-2 uppercase tracking-widest">04.</span>
-                                <h3 className="text-lg font-bold text-white mb-3 font-sans">Final Handover</h3>
-                                <p className="text-sm text-gray-400 font-sans leading-relaxed font-light">
-                                    The reveal of a fully realized space, styled to perfection and ready to be experienced as a cohesive work of art.
-                                </p>
-                            </div>
+                            ))}
                         </div>
                         
                         <hr className="border-gray-800 my-16 opacity-50" />
                         
-                        {/* Logo Banner */}
-                        <div className="flex flex-wrap justify-between items-center gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                            <div className="flex items-center gap-2">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                        {/* Trust Badges Banner */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row lg:justify-between items-center justify-center gap-8 w-full">
+                            {/* Quality Assured */}
+                            <div className="flex flex-col items-center text-center gap-2 max-w-[240px] mx-auto lg:mx-0">
+                                <svg className="w-8 h-8 text-[#b88e2f] stroke-current" fill="none" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                <span className="font-sans text-sm font-bold tracking-widest">LOGOIPSUM</span>
+                                <span className="font-sans text-sm font-semibold text-white tracking-wider">Quality Assured</span>
+                                <span className="font-sans text-xs text-gray-400 font-light">Premium materials. Flawless execution.</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+
+                            {/* Clients First */}
+                            <div className="flex flex-col items-center text-center gap-2 max-w-[240px] mx-auto lg:mx-0">
+                                <svg className="w-8 h-8 text-[#b88e2f] stroke-current" fill="none" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
-                                <span className="font-sans text-sm font-bold tracking-widest">LOGOIPSUM</span>
+                                <span className="font-sans text-sm font-semibold text-white tracking-wider">Clients First</span>
+                                <span className="font-sans text-xs text-gray-400 font-light">Transparent process. Timely delivery.</span>
                             </div>
-                            <div className="flex items-center gap-2 hidden md:flex">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
+
+                            {/* Tailored Designs */}
+                            <div className="flex flex-col items-center text-center gap-2 max-w-[240px] mx-auto lg:mx-0">
+                                <svg className="w-8 h-8 text-[#b88e2f] stroke-current" fill="none" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.969 0 1.371 1.24.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.175 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.98 10.1c-.783-.57-.38-1.81.588-1.81h4.907a1 1 0 00.95-.69l1.519-4.674z" />
                                 </svg>
-                                <span className="font-sans text-sm font-bold tracking-widest">LOGOIPSUM</span>
+                                <span className="font-sans text-sm font-semibold text-white tracking-wider">Tailored Designs</span>
+                                <span className="font-sans text-xs text-gray-400 font-light">Made for your space and lifestyle.</span>
                             </div>
-                            <div className="flex items-center gap-2 hidden sm:flex">
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+
+                            {/* Stress-Free Experience */}
+                            <div className="flex flex-col items-center text-center gap-2 max-w-[240px] mx-auto lg:mx-0">
+                                <svg className="w-8 h-8 text-[#b88e2f] stroke-current" fill="none" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                 </svg>
-                                <span className="font-sans text-sm font-bold tracking-widest">LOGOIPSUM</span>
+                                <span className="font-sans text-sm font-semibold text-white tracking-wider">Stress-Free Experience</span>
+                                <span className="font-sans text-xs text-gray-400 font-light">We handle everything for you.</span>
                             </div>
                         </div>
                     </ScrollReveal>
