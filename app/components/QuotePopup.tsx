@@ -164,9 +164,12 @@ export default function QuotePopup() {
                                                 className="bg-[#2a2a2a] border border-gray-700 rounded-lg w-full text-white px-4 py-2 text-sm focus:outline-none focus:border-[#b88e2f] focus:ring-1 focus:ring-[#b88e2f] transition-all appearance-none cursor-pointer pr-10"
                                             >
                                                 <option value="" disabled>Select scope</option>
-                                                <option value="Single Room">Single Room</option>
-                                                <option value="Full Property Renovation">Full Property Renovation</option>
-                                                <option value="New Construction">New Construction</option>
+                                                <option value="1 BHK">1 BHK</option>
+                                                <option value="2 BHK">2 BHK</option>
+                                                <option value="3 BHK">3 BHK</option>
+                                                <option value="4 BHK">4 BHK</option>
+                                                <option value="5 BHK">5 BHK</option>
+                                                <option value="Renovation">Renovation</option>
                                             </select>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
                                                 <span className="material-symbols-outlined text-sm">keyboard_arrow_down</span>

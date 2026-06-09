@@ -154,6 +154,7 @@ export default function ClientTestimonials() {
                                         {testimonials.map((_, index) => (
                                             <button
                                                 key={index}
+                                                suppressHydrationWarning={true}
                                                 onClick={() => handleDotClick(index)}
                                                 className={`h-2 rounded-full transition-all duration-300 ${
                                                     index === currentIndex 
@@ -169,6 +170,7 @@ export default function ClientTestimonials() {
                                     <div className="flex gap-3">
                                         <button
                                             onClick={handlePrev}
+                                            suppressHydrationWarning={true}
                                             className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#b88e2f] hover:border-[#b88e2f] transition-all duration-300 focus:outline-none cursor-pointer"
                                             aria-label="Previous testimonial"
                                         >
@@ -176,6 +178,7 @@ export default function ClientTestimonials() {
                                         </button>
                                         <button
                                             onClick={handleNext}
+                                            suppressHydrationWarning={true}
                                             className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#b88e2f] hover:border-[#b88e2f] transition-all duration-300 focus:outline-none cursor-pointer"
                                             aria-label="Next testimonial"
                                         >
